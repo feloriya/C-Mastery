@@ -2,6 +2,6 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-    printf("Hello World!\n");
+    printf("bye World!\n");
     return EXIT_SUCCESS;
 }
