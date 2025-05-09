@@ -9,7 +9,7 @@ int main() {
     scanf("%d", &n);
     } while (n < 1);
     
-    int* userArray = (int*) calloc(n, sizeof(int));
+    int* userArray = (int*) malloc(n, sizeof(int));
     
     if (userArray == NULL) {
         printf("Memory allocation error!\n");
