@@ -1,13 +1,7 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 
-void printArray(int* arr, int size) {
-    printf("Array elements: ");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-}
+void printArray(int* arr, int size);
 
 int main() {
     int size;
@@ -39,4 +33,12 @@ int main() {
     arr = NULL;
 
     return 0;
+}
+
+void printArray(int* arr, int size) {
+    printf("Array elements: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 }

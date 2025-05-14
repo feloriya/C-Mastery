@@ -1,37 +1,44 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 
-int main(void) {
+int* resizeArray(int* arr, size_t currentSize, size_t newCapacity);
 
-    const int CAPACITY = 5;
-    int newCapacity = 5;
-    int i = 0;
-    char *name = (char*)malloc(CAPACITY);
-
-    if (name == NULL) {
-        printf("Memory allocation error!\n");
-        return 1;
-    }
-    printf("Enter your name : ");
-    char input;
-    while ((input = getchar()) != '\n') {
-        if ((i + 1) >= newCapacity)
-        {
-            newCapacity += CAPACITY;
-            char* temp = (char*)realloc(name, newCapacity);
-
-            if (temp == NULL) {
-                printf("Memory allocation error!\n");
-                free(name);
-                return 1;
-            }
-            name = temp;
+int main() {
+    size_t capacity = 5;
+    size_t size = 0;
+    int* arr = (int*)malloc(capacity * sizeof(int));
+    
+    // Example usage
+    if (size == capacity) {
+        capacity *= 2; // Double the capacity
+        arr = resizeArray(arr, size, capacity);
+        if (!arr) {
+            printf("Memory allocation failed!\n");
+            return 1;
         }
-        name[i] = input;
-        i++;
     }
-    name[i] = '\0';
-    printf("Your name: %s\nThe length of your name: %d\nSize of capacity %d\n", name, i, newCapacity);
-    free(name);
+    
+    // When array is quarter full, shrink it
+    if (capacity > 10 && size < capacity / 4) {
+        capacity /= 2;
+        arr = resizeArray(arr, size, capacity);
+    }
+    
+    free(arr);
     return 0;
+}
+
+int* resizeArray(int* arr, size_t currentSize, size_t newCapacity) {
+    if (newCapacity == 0) {
+        free(arr);
+        return NULL;
+    }
+    
+    int* newArr = (int*)realloc(arr, newCapacity * sizeof(int));
+    if (!newArr) {
+        // Handle allocation failure
+        return NULL;
+    }
+    
+    return newArr;
 }
