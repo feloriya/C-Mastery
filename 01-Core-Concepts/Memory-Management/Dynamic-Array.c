@@ -1,27 +1,42 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 
+void printArray(int* arr, int size) {
+    printf("Array elements: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
 int main() {
+    int size;
+    int* arr = NULL;
     int sum = 0;
-    int n;
-    do {
-    printf("Enter the number of numbers : ");
-    scanf("%d", &n);
-    } while (n < 1);
-    
-    int* userArray = (int*) malloc(n * sizeof(int));
-    
-    if (userArray == NULL) {
-        printf("Memory allocation error!\n");
+    float average;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    arr = (int*)malloc(size * sizeof(int));
+    if (arr == NULL) {
+        printf("Memory allocation failed!\n");
         return 1;
     }
-    
-    for (int i = 0; i < n; i++) {
-        printf("Enter number %d : ", i + 1);
-        scanf("%d", &userArray[i]);   
-        sum += userArray[i];
+
+    printf("Enter %d elements:\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+        sum += arr[i];
     }
-    printf("The average is : %.2f", (sum/(float)n));
-    free(userArray);
+
+    printArray(arr, size);
+
+    average = (float)sum / size;
+    printf("Average: %.2f\n", average);
+
+    free(arr);
+    arr = NULL;
+
     return 0;
 }
