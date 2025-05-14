@@ -1,0 +1,10 @@
+Number of student is: 2 
+
+Student 1 
+ - Name: 0
+ - Score: 0.00
+
+Student 2 
+ - Name: B
+ - Score: 0.00
+
